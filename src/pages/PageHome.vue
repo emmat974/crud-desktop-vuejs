@@ -7,9 +7,6 @@
 
 <script>
 export default {
-    name: 'PageHome',
-    props: {
-        msg: String
-    }
+    name: 'PageHome'
 }
 </script>

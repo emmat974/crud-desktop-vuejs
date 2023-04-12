@@ -1,14 +1,14 @@
 <template>
-  <Home />
+  <SitePage />
 </template>
 
 <script>
-import Home from './pages/PageHome.vue';
+import SitePage from '@/components/SitePage.vue';
 
 export default {
   name: 'App',
   components: {
-    Home
+    SitePage
   }
 }
 </script>
