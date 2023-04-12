@@ -1,49 +1,30 @@
 <template>
-    <div>
-        <Button @onClick="$emit('changePage')" text="Ajouter" />
-    </div>
-    <table>
-        <thead>
-            <tr>
-                <th> # </th>
-                <th> Nom Prénom </th>
-                <th> Actions </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="adherent in Adherents" :key="adherent.id">
-                <td>{{ adherent.id }}</td>
-                <td><Button @onClick="$emit('getAdherent', adherent.id)" :text="getFullName(adherent)" /></td>
-                <td> ... </td>
-            </tr>
-        </tbody>
-    </table>
+    <Button @onClick="$emit('changePage')" text="Ajouter" />
+    <Table :adherents="adherents" @getAdherent="$emit('getAdherent', $event)" />
 </template>
 
 <script>
 import Button from '@/components/ui/UiButton.vue';
-
+import Table from '@/components/adherents/TableAdherent.vue';
 
 export default {
     name: "ListAdherent",
     components: {
-        Button
+        Button,
+        Table
     },
     props: {
-        Adherents: {
+        adherents: {
             type: Object,
-            required: false
-        },
-        changePage: {
-            type: Function
+            required: true
         },
         getAdherent: {
-            type: Function
-        }
-    },
-    methods: {
-        getFullName(adherent) {
-            return adherent.nom + " " + adherent.prenom
+            type: Function,
+            required: true
+        },
+        changePage: {
+            type: Function,
+            required: true
         }
     }
 }

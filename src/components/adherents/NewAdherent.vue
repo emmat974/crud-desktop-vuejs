@@ -1,5 +1,8 @@
 <template>
     <div>
+        <div class="alert alert-danger" v-show="messageError">
+            Vous n'avez pas compléter tous les champs
+        </div>
         <form @submit="validForm" method="post">
             <Text name="prenom" label="Prénom" v-model="prenom" />
             <Text name="nom" label="Nom" v-model="nom" />
@@ -42,13 +45,31 @@ export default {
             mobile: null,
             numeroCarte: null,
             dateExpiration: null,
-            cryptogramme: null
+            cryptogramme: null,
+            messageError: false
         }
     },
     methods: {
-        validForm: function (e) {
+        validForm(e) {
             e.preventDefault()
 
+            if (this.nom != null ||
+                this.prenom != null ||
+                this.email != null ||
+                this.telephone != null ||
+                this.mobile != null ||
+                this.adresse != null ||
+                this.numeroCarte != null ||
+                this.dateExpiration != null ||
+                this.cryptogramme != null) {
+                this.addAdherent()
+            } else {
+                this.messageError = true
+            }
+
+
+        },
+        addAdherent() {
             const adherent = {
                 nom: this.nom,
                 prenom: this.nom,
@@ -61,6 +82,7 @@ export default {
                 cryptogramme: this.cryptogramme
             }
 
+            this.messageError = false
             this.$emit('insertAdherent', adherent)
         }
     }

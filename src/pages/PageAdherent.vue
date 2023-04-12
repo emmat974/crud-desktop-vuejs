@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1> Adhérent </h1>
-        <List :Adherents="Adherents" v-if="currentPage == 'ListAdherent'" @changePage="changePage('NewAdherent')"
+        <List v-if="currentPage == 'ListAdherent'" :adherents="adherents" @changePage="changePage('NewAdherent')"
             @getAdherent="getAdherent" />
         <New v-if="currentPage == 'NewAdherent'" @insertAdherent="insertAdherent" />
         <Detail v-if="currentPage == 'DetailAdherent'" :adherent="currentAdherent" />
@@ -27,7 +27,7 @@ export default {
         return {
             currentPage: null,
             currentAdherent: null,
-            Adherents: null
+            adherents: []
         }
     },
     created() {
@@ -38,7 +38,7 @@ export default {
         async fetchAdherents() {
             ipcRenderer.send('fetch')
             ipcRenderer.on('allAdherents', (event, arg) => {
-                this.Adherents = arg;
+                this.adherents = arg;
             })
         },
         async insertAdherent(adherent) {
