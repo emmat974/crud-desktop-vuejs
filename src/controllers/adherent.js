@@ -21,7 +21,20 @@ const insertAdherent = async (event, adherent) => {
     }
 }
 
+const getAdherent = async (event, id) => {
+    try {
+        const adherent = await Adherent.get(id);
+        if (adherent) {
+            event.sender.send('adherent', adherent)
+            event.reply(adherent)
+        }
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 module.exports = {
     fetchAdherents,
-    insertAdherent
+    insertAdherent,
+    getAdherent
 }

@@ -25,4 +25,15 @@ Adherent.insert = async (adherent) => {
     }
 }
 
+Adherent.get = async (id) => {
+    try {
+        const conn = await getConnection()
+        const result = await conn.query("SELECT * FROM clients WHERE id = ?", id)
+
+        return result[0]
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 module.exports = Adherent

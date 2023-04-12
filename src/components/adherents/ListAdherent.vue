@@ -13,7 +13,7 @@
         <tbody>
             <tr v-for="adherent in Adherents" :key="adherent.id">
                 <td>{{ adherent.id }}</td>
-                <td>{{ getFullName(adherent) }}</td>
+                <td><Button @onClick="$emit('getAdherent', adherent.id)" :text="getFullName(adherent)" /></td>
                 <td> ... </td>
             </tr>
         </tbody>
@@ -35,6 +35,9 @@ export default {
             required: false
         },
         changePage: {
+            type: Function
+        },
+        getAdherent: {
             type: Function
         }
     },
