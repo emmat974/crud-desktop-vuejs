@@ -87,3 +87,4 @@ if (isDevelopment) {
 ipcMain.on('fetch', adherentController.fetchAdherents)
 ipcMain.on('insert', adherentController.insertAdherent)
 ipcMain.on('get', adherentController.getAdherent)
+ipcMain.on('search', adherentController.searchAdherent)

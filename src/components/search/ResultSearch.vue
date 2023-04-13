@@ -1,43 +1,23 @@
 <template>
-    <table>
-        <thead>
-            <tr>
-                <th> # </th>
-                <th> Nom Prénom </th>
-                <th> Actions </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="adherent in Adherents" :key="adherent.id">
-                <td>{{ adherent.id }}</td>
-                <td><Button @onClick="$emit('getAdherent', adherent.id)" :text="getFullName(adherent)" /></td>
-                <td> ... </td>
-            </tr>
-        </tbody>
-    </table>
+    <Table :adherents="adherents" @getAdherent="$emit('getAdherent', $event)" />
 </template>
 
 <script>
-import Button from '@/components/ui/UiButton.vue';
-
+import Table from '../adherents/TableAdherent.vue';
 
 export default {
-    name: "ListAdherent",
+    name: "ResultSearch",
     components: {
-        Button
+        Table
     },
     props: {
-        Adherents: {
-            type: Object,
-            required: false
-        },
         getAdherent: {
-            type: Function
-        }
-    },
-    methods: {
-        getFullName(adherent) {
-            return adherent.nom + " " + adherent.prenom
+            type: Function,
+            required: true
+        },
+        adherents: {
+            type: Object,
+            required: true
         }
     }
 }

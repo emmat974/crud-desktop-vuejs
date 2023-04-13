@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>{{ getFullName() }}</h1>
+        <h1>{{ fullname() }}</h1>
         <p> {{ adherent }}</p>
     </div>
 </template>
@@ -20,7 +20,7 @@ export default {
         }
     },
     methods: {
-        getFullName() {
+        fullname() {
             return this.adherent.nom + " " + this.adherent.prenom
         },
     }

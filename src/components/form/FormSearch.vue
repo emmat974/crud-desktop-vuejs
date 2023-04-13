@@ -1,6 +1,6 @@
 <template>
     <form @submit="checkForm" method="post">
-        <Text name="search" label="" type="search" placeholder="Rechercher quelque chose..." />
+        <Text name="search" label="" type="search" v-model="search" placeholder="Rechercher quelque chose..." />
         <Button text="Rechercher" />
     </form>
 </template>
@@ -23,14 +23,16 @@ export default {
     },
     data() {
         return {
-            name: null
+            search: null
         }
     },
     methods: {
         checkForm(e) {
             e.preventDefault();
+            if (this.search != null) {
+                this.$emit('changePage', 'Search');
+            }
         },
-
     }
 }
 </script>

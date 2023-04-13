@@ -36,4 +36,15 @@ Adherent.get = async (id) => {
     }
 }
 
+Adherent.search = async (search) => {
+    try {
+        const conn = await getConnection()
+        const result = await conn.query("SELECT * FROM clients WHERE nom like '%" + search + "%'")
+
+        return result
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 module.exports = Adherent

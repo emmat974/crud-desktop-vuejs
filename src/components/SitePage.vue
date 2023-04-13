@@ -3,7 +3,7 @@
         <Button text="Home" @onClick="changePage('Home')" />
         <Button text="Connexion" @onClick="changePage('Connexion')" />
         <Button text="Adherent" @onClick="changePage('Adherent')" />
-        <Search @changePage="changePage" />
+        <FormSearch @changePage="changePage" />
         <component :is="component" />
     </div>
 </template>
@@ -12,8 +12,9 @@
 import Adherent from '@/pages/PageAdherent.vue';
 import Connexion from '@/pages/PageConnexion.vue';
 import Home from '@/pages/PageHome.vue';
+import Search from '@/pages/PageSearch.vue'
 import Button from '@/components/ui/UiButton.vue';
-import Search from '@/components/form/FormSearch.vue';
+import FormSearch from '@/components/form/FormSearch.vue';
 
 export default {
     name: "SitePage",
@@ -22,11 +23,17 @@ export default {
         Connexion,
         Home,
         Button,
-        Search
+        Search,
+        FormSearch
     },
     data() {
         return {
-            component: null,
+            component: {
+                'Adherent': Adherent,
+                'Connexion': Connexion,
+                'Home': Home,
+                'Search': Search
+            },
             currentPage: null
         }
     },
