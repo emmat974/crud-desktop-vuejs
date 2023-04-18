@@ -1,31 +1,37 @@
 <template>
-    <Button @onClick="$emit('changePage')" text="Ajouter" />
-    <Table :adherents="adherents" @getAdherent="$emit('getAdherent', $event)" />
+    <LinkTo :to="{
+        name: 'AddAdherent'
+    }" text="Ajouter" />
+    <Table :adherents="adherents" />
 </template>
 
 <script>
-import Button from '@/components/ui/UiButton.vue';
+import LinkTo from '@/components/ui/LinkTo.vue';
 import Table from '@/components/adherents/TableAdherent.vue';
+
+const { ipcRenderer } = require("electron")
 
 export default {
     name: "ListAdherent",
     components: {
-        Button,
+        LinkTo,
         Table
     },
-    props: {
-        adherents: {
-            type: Object,
-            required: true
-        },
-        getAdherent: {
-            type: Function,
-            required: true
-        },
-        changePage: {
-            type: Function,
-            required: true
+    data() {
+        return {
+            adherents: []
         }
+    },
+    created() {
+        this.fetchAdherents()
+    },
+    methods: {
+        async fetchAdherents() {
+            ipcRenderer.send('fetch')
+            ipcRenderer.on('allAdherents', (event, arg) => {
+                this.adherents = arg;
+            })
+        },
     }
 }
 </script>

@@ -2,7 +2,7 @@
     <form @submit="checkForm" method="post">
         <Text name="email" label="Email" type="email" />
         <Text name="password" label="Mot de passe" type="password" />
-        <Button text="Me connecter" />
+        <Button text="Me connecter" @onClick="testEvent()" />
     </form>
 </template>
 

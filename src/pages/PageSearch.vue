@@ -1,15 +1,13 @@
 <template>
     <div>
         <h1> Rechercher {{ search }} </h1>
-        <Result :adherents="adherents" @getAdherent="getAdherent" @changePage="changePage" />
-        <Detail v-if="currentPage == 'DetailAdherent'" :adherent="currentAdherent" />
+        <Result :adherents="adherents" />
     </div>
 </template>
 
 
 <script>
 import Result from "@/components/search/ResultSearch.vue"
-import Detail from '@/components/adherents/DetailAdherent.vue';
 
 const { ipcRenderer } = require("electron")
 
@@ -17,31 +15,25 @@ export default {
     name: 'PageSearch',
     components: {
         Result,
-        Detail
+    },
+    props: {
+        nom: {
+            type: String,
+            required: false
+        }
     },
     data() {
         return {
             adherents: null,
-            search: null
         }
     },
     mounted() {
-        this.search = document.querySelector('#search').value
-        this.searchAdherent(this.search)
+        this.searchAdherent(this.nom)
     },
     methods: {
-        async getAdherent(id) {
-            try {
-                await ipcRenderer.send('get', id)
-                await ipcRenderer.on('adherent', (event, arg) => {
-                    this.currentAdherent = arg;
-                    this.changePage('DetailAdherent')
-                })
-            } catch (error) {
-                console.error(error)
-            }
-        },
         async searchAdherent(search) {
+            this.adherents = null
+
             try {
                 await ipcRenderer.send('search', search)
                 await ipcRenderer.on('searchAdherent', (event, arg) => {
@@ -51,9 +43,6 @@ export default {
                 console.error(error)
             }
         },
-        changePage(page) {
-            this.currentPage = page
-        }
     }
 }
 </script>

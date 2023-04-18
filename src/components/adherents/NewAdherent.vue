@@ -23,17 +23,14 @@ import Text from '@/components/input/InputText.vue'
 import Textarea from '@/components/input/InputTextarea.vue'
 import Button from '@/components/ui/UiButton.vue'
 
+const { ipcRenderer } = require("electron")
+
 export default {
     name: 'NewAdherent',
     components: {
         Text,
         Textarea,
         Button
-    },
-    props: {
-        insertAdherent: {
-            type: Function
-        }
     },
     data() {
         return {
@@ -83,8 +80,16 @@ export default {
             }
 
             this.messageError = false
-            this.$emit('insertAdherent', adherent)
-        }
+            this.insertAdherent(adherent)
+        },
+        async insertAdherent(adherent) {
+            try {
+                await ipcRenderer.send('insert', adherent)
+                this.$router.push({ name: 'Adherent' })
+            } catch (error) {
+                console.error(error)
+            }
+        },
     }
 }
 </script>

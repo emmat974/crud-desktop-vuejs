@@ -1,5 +1,5 @@
 <template>
-    <Table :adherents="adherents" @getAdherent="$emit('getAdherent', $event)" />
+    <Table :adherents="adherents" />
 </template>
 
 <script>
@@ -11,10 +11,6 @@ export default {
         Table
     },
     props: {
-        getAdherent: {
-            type: Function,
-            required: true
-        },
         adherents: {
             type: Object,
             required: true

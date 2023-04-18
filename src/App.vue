@@ -1,14 +1,18 @@
 <template>
-  <SitePage />
+  <Navigation />
+  <Search />
+  <router-view></router-view>
 </template>
 
 <script>
-import SitePage from '@/components/SitePage.vue';
+import Navigation from '@/components/NavigationRoute.vue'
+import Search from "@/components/form/FormSearch.vue"
 
 export default {
   name: 'App',
   components: {
-    SitePage
+    Navigation,
+    Search
   }
 }
 </script>

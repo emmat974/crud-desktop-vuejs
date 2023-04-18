@@ -12,11 +12,6 @@ import Button from "@/components/ui/UiButton.vue"
 
 export default {
     name: "FormSearch",
-    props: {
-        changePage: {
-            type: Function
-        }
-    },
     components: {
         Text,
         Button
@@ -30,7 +25,7 @@ export default {
         checkForm(e) {
             e.preventDefault();
             if (this.search != null) {
-                this.$emit('changePage', 'Search');
+                console.log(this.$router.push({ name: 'Search', params: { nom: document.querySelector('#search').value } }))
             }
         },
     }

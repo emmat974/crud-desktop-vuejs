@@ -11,7 +11,9 @@
             <tr v-for="adherent in adherents" :key="adherent.id">
                 <td>{{ adherent.id }}</td>
                 <td>
-                    <Button @onClick="$emit('getAdherent', adherent.id)" :text="fullname(adherent)" />
+                    <LinkTo :to='{
+                        name: "DetailAdherent", params: { id: adherent.id }
+                    }' :text="fullname(adherent)" />
                 </td>
                 <td> ... </td>
             </tr>
@@ -20,18 +22,14 @@
 </template>
 
 <script>
-import Button from "@/components/ui/UiButton.vue"
+import LinkTo from "@/components/ui/LinkTo.vue"
 
 export default {
     name: "TableAdherent",
     components: {
-        Button
+        LinkTo
     },
     props: {
-        getAdherent: {
-            type: Function,
-            required: true
-        },
         adherents: {
             type: Object,
             required: true
