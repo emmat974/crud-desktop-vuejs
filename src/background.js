@@ -3,6 +3,8 @@
 import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
+import { generateFakeDataModel } from './fixtures/fake_data'
+
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 const adherentController = require('./controllers/adherent');
@@ -88,3 +90,17 @@ ipcMain.on('fetch', adherentController.fetchAdherents)
 ipcMain.on('insert', adherentController.insertAdherent)
 ipcMain.on('get', adherentController.getAdherent)
 ipcMain.on('search', adherentController.searchAdherent)
+
+// générate fake data only dev
+if (isDevelopment && !process.env.IS_TEST) {
+  ipcMain.on('fake_data', async (event, arg) => {
+    try {
+      await generateFakeDataModel()
+    } catch (error) {
+      console.error(error)
+    }
+  })
+
+  // Génère des fausse donnée
+  // ipcMain.emit('fake_data', /* arg */)
+}

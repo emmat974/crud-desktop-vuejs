@@ -10,7 +10,6 @@ Adherent.fetch = async () => {
     } catch (error) {
         console.error(error)
     }
-
 }
 
 Adherent.insert = async (adherent) => {
