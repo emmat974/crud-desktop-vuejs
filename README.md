@@ -22,5 +22,13 @@ npm run build
 npm run lint
 ```
 
+### Fixtures
+
+Dans background.js, décommenté le bout code :
+```
+ipcMain.emit('fake_data', /* arg */)
+```
+Pensez à le recommenter une fois générée sous risque d'avoir beaucoup de data générée.
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

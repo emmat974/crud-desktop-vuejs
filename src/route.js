@@ -9,6 +9,11 @@ import NewAdherent from './components/adherents/NewAdherent'
 const routes = [
     {
         path: '/',
+        name: 'Connexion',
+        component: Connexion
+    },
+    {
+        path: '/home',
         name: 'Home',
         component: Home,
     },
@@ -27,11 +32,6 @@ const routes = [
         path: '/adherent/add',
         name: 'AddAdherent',
         component: NewAdherent
-    },
-    {
-        path: '/connexion',
-        name: 'Connexion',
-        component: Connexion
     },
     {
         path: '/search/:nom',

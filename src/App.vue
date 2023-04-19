@@ -1,6 +1,8 @@
 <template>
-  <Navigation />
-  <Search />
+  <template v-if="employee">
+    <Navigation />
+    <Search />
+  </template>
   <router-view></router-view>
 </template>
 
@@ -13,6 +15,19 @@ export default {
   components: {
     Navigation,
     Search
+  },
+  data() {
+    return {
+      employee: null
+    }
+  },
+  methods: {
+    setEmploye(employee) {
+      this.employee = employee
+    },
+    getEmploye() {
+      return this.employee
+    }
   }
 }
 </script>

@@ -33,9 +33,8 @@ export default {
     methods: {
         async searchAdherent(search) {
             this.adherents = null
-
             try {
-                await ipcRenderer.send('search', search)
+                await ipcRenderer.send('searchAdherent', search)
                 await ipcRenderer.on('searchAdherent', (event, arg) => {
                     this.adherents = arg
                 })

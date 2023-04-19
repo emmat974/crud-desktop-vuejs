@@ -25,7 +25,7 @@ export default {
         checkForm(e) {
             e.preventDefault();
             if (this.search != null) {
-                console.log(this.$router.push({ name: 'Search', params: { nom: document.querySelector('#search').value } }))
+                this.$router.push({ name: 'Search', params: { nom: document.querySelector('#search').value } })
             }
         },
     }

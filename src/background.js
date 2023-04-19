@@ -3,11 +3,12 @@
 import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
-import { generateFakeDataModel } from './fixtures/fake_data'
+import { generateEmployee, generateFakeDataModel, resetAllTable } from './fixtures/app_fixture'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-const adherentController = require('./controllers/adherent');
+const adherentController = require('./controllers/adherent')
+const employeController = require('./controllers/employee')
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
@@ -85,22 +86,28 @@ if (isDevelopment) {
   }
 }
 
-// ipc
-ipcMain.on('fetch', adherentController.fetchAdherents)
-ipcMain.on('insert', adherentController.insertAdherent)
-ipcMain.on('get', adherentController.getAdherent)
-ipcMain.on('search', adherentController.searchAdherent)
+// ipc adherent
+ipcMain.on('fetchAdherents', adherentController.fetchAdherents)
+ipcMain.on('insertAdherent', adherentController.insertAdherent)
+ipcMain.on('getAdherent', adherentController.getAdherent)
+ipcMain.on('searchAdherent', adherentController.searchAdherent)
+
+// ipc employee
+ipcMain.on('fetchEmployes', employeController.fetchEmployes)
+ipcMain.on('loginEmploye', employeController.loginEmploye)
 
 // générate fake data only dev
 if (isDevelopment && !process.env.IS_TEST) {
   ipcMain.on('fake_data', async (event, arg) => {
     try {
+      await resetAllTable()
       await generateFakeDataModel()
+      await generateEmployee()
     } catch (error) {
       console.error(error)
     }
   })
 
   // Génère des fausse donnée
-  // ipcMain.emit('fake_data', /* arg */)
+  //  ipcMain.emit('fake_data', /* arg */)
 }

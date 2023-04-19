@@ -1,6 +1,19 @@
 const { getConnection } = require('../database');
 const data = require('./fake_name')
+const argon2 = require('argon2')
 
+// Cette fonction permet de remettre à zéro une base de donnée, NE JAMAIS UTILISER EN PRODUCTION
+async function resetAllTable() {
+    try {
+        const conn = await getConnection()
+        await conn.query("TRUNCATE TABLE clients, employees")
+    }
+    catch (error) {
+        console.error(error)
+    }
+}
+
+// Permet de générée des données sur des adherents
 async function generateFakeDataModel() {
     try {
         const conn = await getConnection()
@@ -25,7 +38,7 @@ async function generateFakeDataModel() {
                 })(),
                 cryptogramme: Math.floor(Math.random() * 999) + 1
             }
-            const result = await conn.query("INSERT INTO clients SET ?", adherent)
+            await conn.query("INSERT INTO clients SET ?", adherent)
         }
     }
     catch (error) {
@@ -33,6 +46,31 @@ async function generateFakeDataModel() {
     }
 }
 
+// Permet de générer un employé
+async function generateEmployee() {
+    try {
+
+        const passwordHash = await argon2.hash('1234')
+
+        const employee = {
+            nom: 'John',
+            prenom: 'Doe',
+            email: 'johndoe@gmail.com',
+            password: passwordHash,
+            service: 'Accueil'
+        }
+
+        const conn = await getConnection()
+        await conn.query("INSERT INTO employes SET ?", employee)
+
+    }
+    catch (error) {
+        console.error(error)
+    }
+}
+
 module.exports = {
-    generateFakeDataModel
+    resetAllTable,
+    generateFakeDataModel,
+    generateEmployee
 }
