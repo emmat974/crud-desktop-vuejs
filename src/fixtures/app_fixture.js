@@ -6,7 +6,8 @@ const argon2 = require('argon2')
 async function resetAllTable() {
     try {
         const conn = await getConnection()
-        await conn.query("TRUNCATE TABLE clients, employees")
+        await conn.query("TRUNCATE TABLE clients")
+        await conn.query("TRUNCATE TABLE employes")
     }
     catch (error) {
         console.error(error)

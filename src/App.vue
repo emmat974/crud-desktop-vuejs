@@ -1,8 +1,8 @@
 <template>
-  <template v-if="employee">
-    <Navigation />
-    <Search />
-  </template>
+  <!-- <template v-if="employee"> -->
+  <Navigation />
+  <Search />
+  <!-- </template> -->
   <router-view></router-view>
 </template>
 

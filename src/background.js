@@ -109,5 +109,5 @@ if (isDevelopment && !process.env.IS_TEST) {
   })
 
   // Génère des fausse donnée
-  //  ipcMain.emit('fake_data', /* arg */)
+  // ipcMain.emit('fake_data', /* arg */)
 }

@@ -1,5 +1,5 @@
 <template>
-    <canvas id="graph" :width="width" :height="height" backgroundColor="rgba(2, 117, 216, 1)"></canvas>
+    <canvas id="graph" :width="width" :height="height"></canvas>
 </template>
 
 <script>
