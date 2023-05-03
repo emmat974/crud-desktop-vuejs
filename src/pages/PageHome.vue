@@ -1,14 +1,19 @@
 <template>
 
-    
     <div class="relative flex min-h-screen">
         <!-- sidebar -->
         <div class="bg-black text-white w-60">
             <img src="../assets/logo.svg" alt="logo" class="h-25 w-25 ml-10 mt-10 mr-10">
             <nav>
                 <a href="#">
-                    <div class="w-10 h-10 ml-20 mt-20 mr-20">
+                    <div class="text-4xl ml-20 mt-20 mr-20">
                         <i class="fa-sharp fa-solid fa-house"></i>
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="text-4xl ml-20 mt-20 mr-20">
+                        <i class="fa-solid fa-user-group"></i>
                     </div>
                 </a>
 
@@ -98,11 +103,35 @@
                 <!-- end login -->
             </nav>
 
-            <div class="p-8 text-black font-extrabold">Content</div>
+            <div class="p-8">
+                
+                <div class="pt-6 px-4">
+               <div class="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
+                  <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
+                     <div class="flex items-center justify-between mb-4">
+                        <div class="flex-shrink-0">
+                           <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">Nouveau adhérant</span>
+                        </div>
+                        <div class="flex items-center justify-end flex-1 text-green-500 text-base font-bold">
+                           12.5%
+                           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                           </svg>
+                        </div>
+                    </div>
+                  </div>
+               </div>
+                </div>
+
+                
+              
+                
+            </div>
         </div>
     </div>
     
 </template>
+
 
 <script>
 
