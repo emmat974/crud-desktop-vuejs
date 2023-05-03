@@ -69,7 +69,7 @@ export default {
         addAdherent() {
             const adherent = {
                 nom: this.nom,
-                prenom: this.nom,
+                prenom: this.prenom,
                 email: this.email,
                 telephone: this.telephone,
                 mobile: this.mobile,
