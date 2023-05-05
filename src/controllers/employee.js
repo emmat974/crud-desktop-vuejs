@@ -18,7 +18,7 @@ const loginEmploye = async (event, email, password) => {
         if (employee) {
             const passwordHash = await argon2.verify(employee.password, password)
             if (passwordHash) {
-                event.sender.send('login', employee)
+                return employee
             }
             return false
         }

@@ -34,10 +34,9 @@ const routes = [
         component: NewAdherent
     },
     {
-        path: '/search/:nom',
+        path: '/search',
         name: 'Search',
-        component: Search,
-        props: true
+        component: Search
     }
 ];
 

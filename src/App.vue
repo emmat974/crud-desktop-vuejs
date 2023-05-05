@@ -1,34 +1,22 @@
 <template>
-  <!-- <template v-if="employee"> -->
-  <Navigation />
-  <Search />
-  <!-- </template> -->
-  <router-view></router-view>
+  <template v-if="this.$store.state.user">
+    <PageUserConnect />
+  </template>
+  <template v-else>
+    <PageNotConnect />
+  </template>
 </template>
 
 <script>
-import Navigation from '@/components/NavigationRoute.vue'
-import Search from "@/components/form/FormSearch.vue"
+import PageNotConnect from './pages/PageNotConnect.vue';
+import PageUserConnect from './pages/PageUserConnect.vue';
 
 export default {
   name: 'App',
   components: {
-    Navigation,
-    Search
+    PageUserConnect,
+    PageNotConnect
   },
-  data() {
-    return {
-      employee: null
-    }
-  },
-  methods: {
-    setEmploye(employee) {
-      this.employee = employee
-    },
-    getEmploye() {
-      return this.employee
-    }
-  }
 }
 </script>
 

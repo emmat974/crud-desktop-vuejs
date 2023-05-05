@@ -10,6 +10,9 @@
 import Text from "@/components/input/InputText.vue"
 import Button from "@/components/ui/UiButton.vue"
 
+const { ipcRenderer } = require("electron")
+
+
 export default {
     name: "FormSearch",
     components: {
@@ -25,9 +28,19 @@ export default {
         checkForm(e) {
             e.preventDefault();
             if (this.search != null) {
-                this.$router.push({ name: 'Search', params: { nom: document.querySelector('#search').value } })
+                this.searchAdherent()
             }
         },
+        async searchAdherent() {
+            try {
+                const results = await ipcRenderer.invoke('searchAdherent', this.search)
+                this.$store.commit('setSearchResults', results)
+                this.$router.push({ name: 'Search' })
+                console.log(results)
+            } catch (error) {
+                console.error(error)
+            }
+        }
     }
 }
 </script>

@@ -36,14 +36,12 @@ export default {
         async getAdherent(id) {
             this.loading = true
             try {
-                await ipcRenderer.send('getAdherent', id)
-                await ipcRenderer.on('adherent', (event, arg) => {
-                    this.adherent = arg;
-                    this.loading = false
-                })
+                this.adherent = await ipcRenderer.invoke('getAdherent', id)
             } catch (error) {
                 console.error(error)
             }
+            this.loading = false
+
         },
     }
 }

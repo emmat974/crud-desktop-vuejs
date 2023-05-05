@@ -6,6 +6,8 @@ Employee.fetch = async () => {
     try {
         const conn = await getConnection()
         const result = await conn.query("SELECT * FROM clients ORDER BY id DESC")
+
+        return result
     } catch (error) {
         console.error(error)
     }

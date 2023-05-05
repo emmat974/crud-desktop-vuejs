@@ -84,7 +84,7 @@ export default {
         },
         async insertAdherent(adherent) {
             try {
-                await ipcRenderer.send('insertAdherent', adherent)
+                await ipcRenderer.invoke('insertAdherent', adherent)
                 this.$router.push({ name: 'Adherent' })
             } catch (error) {
                 console.error(error)

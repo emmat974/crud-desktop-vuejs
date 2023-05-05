@@ -33,14 +33,14 @@ export default {
         async login() {
             this.loading = true
             try {
-                await ipcRenderer.send('loginEmploye', this.email, this.password)
-
-                // Si on réussi à ce connecter
-                await ipcRenderer.on('login', (event, arg) => {
-                    this.$root.setEmploye(arg)
-                    this.$router.push({ name: 'Home' })
+                await ipcRenderer.invoke('loginEmploye', this.email, this.password).then((result) => {
+                    if (result) {
+                        this.$store.commit('setUser', result)
+                        this.$router.push({ name: 'Home' })
+                    }
+                }).catch((error) => {
+                    console.error(error)
                 })
-
                 this.loading = false
             } catch (error) {
                 console.error(error)

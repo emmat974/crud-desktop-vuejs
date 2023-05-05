@@ -7,9 +7,6 @@ import { generateEmployee, generateFakeDataModel, resetAllTable } from './fixtur
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-const adherentController = require('./controllers/adherent')
-const employeController = require('./controllers/employee')
-
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
@@ -68,6 +65,21 @@ app.on('ready', async () => {
       console.error('Vue Devtools failed to install:', e.toString())
     }
   }
+
+  // On créer les différents handle
+  const adherentController = require('./controllers/adherent')
+  const employeController = require('./controllers/employee')
+
+  // ipc adherent
+  ipcMain.handle('fetchAdherents', adherentController.fetchAdherents)
+  ipcMain.handle('insertAdherent', adherentController.insertAdherent)
+  ipcMain.handle('getAdherent', adherentController.getAdherent)
+  ipcMain.handle('searchAdherent', adherentController.searchAdherent)
+
+  // ipc employee
+  ipcMain.handle('fetchEmployes', employeController.fetchEmployes)
+  ipcMain.handle('loginEmploye', employeController.loginEmploye)
+
   createWindow()
 })
 
@@ -86,15 +98,6 @@ if (isDevelopment) {
   }
 }
 
-// ipc adherent
-ipcMain.on('fetchAdherents', adherentController.fetchAdherents)
-ipcMain.on('insertAdherent', adherentController.insertAdherent)
-ipcMain.on('getAdherent', adherentController.getAdherent)
-ipcMain.on('searchAdherent', adherentController.searchAdherent)
-
-// ipc employee
-ipcMain.on('fetchEmployes', employeController.fetchEmployes)
-ipcMain.on('loginEmploye', employeController.loginEmploye)
 
 // générate fake data only dev
 if (isDevelopment && !process.env.IS_TEST) {

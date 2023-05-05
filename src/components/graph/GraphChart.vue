@@ -18,14 +18,14 @@ export default {
             default: 'line'
         },
         height: {
-            type: Number,
+            type: String,
             required: false,
-            default: 400
+            default: '400'
         },
         width: {
-            type: Number,
+            type: String,
             required: false,
-            default: 400
+            default: '400'
         },
         title: {
             type: String,

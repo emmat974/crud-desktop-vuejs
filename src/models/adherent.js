@@ -38,7 +38,7 @@ Adherent.get = async (id) => {
 Adherent.search = async (search) => {
     try {
         const conn = await getConnection()
-        const result = await conn.query("SELECT * FROM clients WHERE nom like '%" + search + "%'")
+        const result = await conn.query("SELECT * FROM clients WHERE nom like '%" + search + "%' or prenom like '%" + search + "%' or numero_carte like '%" + search + "%'")
 
         return result
     } catch (error) {

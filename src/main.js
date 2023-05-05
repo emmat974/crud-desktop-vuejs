@@ -2,10 +2,12 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import * as VueRouter from 'vue-router'
 import routes from './route'
+import store from './store/search'
+
 
 const router = VueRouter.createRouter({
     history: VueRouter.createWebHistory(),
     routes: routes
 });
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(store).use(router).mount('#app')

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <GraphChart :data="data" width="800" height="400" title="Nouveau adhérent" />
+        <GraphChart :data="data" width="800" height="400" title="" />
     </div>
 </template>
 
@@ -21,7 +21,7 @@ export default {
                     label: "Adhérents",
                     backgroundColor: "rgba(2,117,216,1)",
                     borderColor: "rgba(2,117,216,1)",
-                    data: [123, 100, 500, 120, 140, 200]
+                    data: [123, 100, 500, 120, 140, 123]
                 }],
             },
         }

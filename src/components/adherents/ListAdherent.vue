@@ -27,10 +27,7 @@ export default {
     },
     methods: {
         async fetchAdherents() {
-            ipcRenderer.send('fetchAdherents')
-            ipcRenderer.on('allAdherents', (event, arg) => {
-                this.adherents = arg;
-            })
+            this.adherents = await ipcRenderer.invoke('fetchAdherents')
         },
     }
 }
