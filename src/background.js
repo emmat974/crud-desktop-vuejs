@@ -1,8 +1,10 @@
 'use strict'
 
-import { app, protocol, BrowserWindow } from 'electron'
+import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
+import { generateEmployee, generateFakeDataModel, resetAllTable } from './fixtures/app_fixture'
+
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Scheme must be registered before the app is ready
@@ -13,14 +15,13 @@ protocol.registerSchemesAsPrivileged([
 async function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1920,
+    height: 1080,
     webPreferences: {
-      
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
-      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
+      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
     }
   })
 
@@ -33,6 +34,8 @@ async function createWindow() {
     // Load the index.html when not in development
     win.loadURL('app://./index.html')
   }
+
+  win.Buffer = Buffer;
 }
 
 // Quit when all windows are closed.
@@ -62,6 +65,22 @@ app.on('ready', async () => {
       console.error('Vue Devtools failed to install:', e.toString())
     }
   }
+
+  // On créer les différents handle
+  const adherentController = require('./controllers/adherent')
+  const employeController = require('./controllers/employee')
+
+  // ipc adherent
+  ipcMain.handle('fetchAdherents', adherentController.fetchAdherents)
+  ipcMain.handle('fetchAdherentsWithLimit', adherentController.fetchAdherentsWithLimit)
+  ipcMain.handle('insertAdherent', adherentController.insertAdherent)
+  ipcMain.handle('getAdherent', adherentController.getAdherent)
+  ipcMain.handle('searchAdherent', adherentController.searchAdherent)
+
+  // ipc employee
+  ipcMain.handle('fetchEmployes', employeController.fetchEmployes)
+  ipcMain.handle('loginEmploye', employeController.loginEmploye)
+
   createWindow()
 })
 
@@ -78,4 +97,21 @@ if (isDevelopment) {
       app.quit()
     })
   }
+}
+
+
+// générate fake data only dev
+if (isDevelopment && !process.env.IS_TEST) {
+  ipcMain.on('fake_data', async (event, arg) => {
+    try {
+      await resetAllTable()
+      await generateFakeDataModel()
+      await generateEmployee()
+    } catch (error) {
+      console.error(error)
+    }
+  })
+
+  // Génère des fausse donnée
+  // ipcMain.emit('fake_data', /* arg */)
 }

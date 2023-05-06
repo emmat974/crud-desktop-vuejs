@@ -1,15 +1,22 @@
 <template>
-  <Home />
+  <template v-if="this.$store.state.user">
+    <PageUserConnect />
+  </template>
+  <template v-else>
+    <PageNotConnect />
+  </template>
 </template>
 
 <script>
-import Home from './pages/PageHome.vue';
+import PageNotConnect from './pages/PageNotConnect.vue';
+import PageUserConnect from './pages/PageUserConnect.vue';
 
 export default {
   name: 'App',
   components: {
-    Home
-  }
+    PageUserConnect,
+    PageNotConnect
+  },
 }
 </script>
 

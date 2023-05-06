@@ -13,8 +13,14 @@
   },
   "main": "background.js",
   "dependencies": {
-    "core-js": "^3.8.3",
-    "vue": "^3.2.13"
+    "argon2": "^0.30.3",
+    "chart.js": "^4.3.0",
+    "core-js": "^3.30.0",
+    "mysql2": "^3.2.0",
+    "promise-mysql": "^5.2.0",
+    "vue": "^3.2.13",
+    "vue-router": "^4.1.6",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

@@ -1776,7 +1776,84 @@ eval("/*\n Yaku v0.16.7\n (c) 2015 Yad Smood. http://ysmood.org\n License MIT\n*
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! electron */ \"electron\");\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var vue_cli_plugin_electron_builder_lib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-cli-plugin-electron-builder/lib */ \"./node_modules/vue-cli-plugin-electron-builder/lib/index.js\");\n/* harmony import */ var electron_devtools_installer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! electron-devtools-installer */ \"./node_modules/electron-devtools-installer/dist/index.js\");\n/* harmony import */ var electron_devtools_installer__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(electron_devtools_installer__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n\n\nconst isDevelopment = \"development\" !== 'production'\n\n// Scheme must be registered before the app is ready\nelectron__WEBPACK_IMPORTED_MODULE_0__[\"protocol\"].registerSchemesAsPrivileged([\n  { scheme: 'app', privileges: { secure: true, standard: true } }\n])\n\nasync function createWindow() {\n  // Create the browser window.\n  const win = new electron__WEBPACK_IMPORTED_MODULE_0__[\"BrowserWindow\"]({\n    width: 800,\n    height: 600,\n    webPreferences: {\n      \n      // Use pluginOptions.nodeIntegration, leave this alone\n      // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info\n      nodeIntegration: false,\n      contextIsolation: !false\n    }\n  })\n\n  if (true) {\n    // Load the url of the dev server if in development mode\n    await win.loadURL(\"http://localhost:8080/\")\n    if (!process.env.IS_TEST) win.webContents.openDevTools()\n  } else {}\n}\n\n// Quit when all windows are closed.\nelectron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].on('window-all-closed', () => {\n  // On macOS it is common for applications and their menu bar\n  // to stay active until the user quits explicitly with Cmd + Q\n  if (process.platform !== 'darwin') {\n    electron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].quit()\n  }\n})\n\nelectron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].on('activate', () => {\n  // On macOS it's common to re-create a window in the app when the\n  // dock icon is clicked and there are no other windows open.\n  if (electron__WEBPACK_IMPORTED_MODULE_0__[\"BrowserWindow\"].getAllWindows().length === 0) createWindow()\n})\n\n// This method will be called when Electron has finished\n// initialization and is ready to create browser windows.\n// Some APIs can only be used after this event occurs.\nelectron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].on('ready', async () => {\n  if (isDevelopment && !process.env.IS_TEST) {\n    // Install Vue Devtools\n    try {\n      await electron_devtools_installer__WEBPACK_IMPORTED_MODULE_2___default()(electron_devtools_installer__WEBPACK_IMPORTED_MODULE_2__[\"VUEJS3_DEVTOOLS\"])\n    } catch (e) {\n      console.error('Vue Devtools failed to install:', e.toString())\n    }\n  }\n  createWindow()\n})\n\n// Exit cleanly on request from parent process in development mode.\nif (isDevelopment) {\n  if (process.platform === 'win32') {\n    process.on('message', (data) => {\n      if (data === 'graceful-exit') {\n        electron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].quit()\n      }\n    })\n  } else {\n    process.on('SIGTERM', () => {\n      electron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].quit()\n    })\n  }\n}\n\n\n//# sourceURL=webpack:///./src/background.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! electron */ \"electron\");\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var vue_cli_plugin_electron_builder_lib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-cli-plugin-electron-builder/lib */ \"./node_modules/vue-cli-plugin-electron-builder/lib/index.js\");\n/* harmony import */ var electron_devtools_installer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! electron-devtools-installer */ \"./node_modules/electron-devtools-installer/dist/index.js\");\n/* harmony import */ var electron_devtools_installer__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(electron_devtools_installer__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _fixtures_app_fixture__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./fixtures/app_fixture */ \"./src/fixtures/app_fixture.js\");\n/* harmony import */ var _fixtures_app_fixture__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_fixtures_app_fixture__WEBPACK_IMPORTED_MODULE_3__);\n\n\n\n\n\n\n\nconst isDevelopment = \"development\" !== 'production'\n\n// Scheme must be registered before the app is ready\nelectron__WEBPACK_IMPORTED_MODULE_0__[\"protocol\"].registerSchemesAsPrivileged([\n  { scheme: 'app', privileges: { secure: true, standard: true } }\n])\n\nasync function createWindow() {\n  // Create the browser window.\n  const win = new electron__WEBPACK_IMPORTED_MODULE_0__[\"BrowserWindow\"]({\n    width: 1920,\n    height: 1080,\n    webPreferences: {\n      // Use pluginOptions.nodeIntegration, leave this alone\n      // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info\n      nodeIntegration: true,\n      contextIsolation: !true,\n    }\n  })\n\n  if (true) {\n    // Load the url of the dev server if in development mode\n    await win.loadURL(\"http://localhost:8080/\")\n    if (!process.env.IS_TEST) win.webContents.openDevTools()\n  } else {}\n\n  win.Buffer = Buffer;\n}\n\n// Quit when all windows are closed.\nelectron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].on('window-all-closed', () => {\n  // On macOS it is common for applications and their menu bar\n  // to stay active until the user quits explicitly with Cmd + Q\n  if (process.platform !== 'darwin') {\n    electron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].quit()\n  }\n})\n\nelectron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].on('activate', () => {\n  // On macOS it's common to re-create a window in the app when the\n  // dock icon is clicked and there are no other windows open.\n  if (electron__WEBPACK_IMPORTED_MODULE_0__[\"BrowserWindow\"].getAllWindows().length === 0) createWindow()\n})\n\n// This method will be called when Electron has finished\n// initialization and is ready to create browser windows.\n// Some APIs can only be used after this event occurs.\nelectron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].on('ready', async () => {\n  if (isDevelopment && !process.env.IS_TEST) {\n    // Install Vue Devtools\n    try {\n      await electron_devtools_installer__WEBPACK_IMPORTED_MODULE_2___default()(electron_devtools_installer__WEBPACK_IMPORTED_MODULE_2__[\"VUEJS3_DEVTOOLS\"])\n    } catch (e) {\n      console.error('Vue Devtools failed to install:', e.toString())\n    }\n  }\n\n  // On créer les différents handle\n  const adherentController = __webpack_require__(/*! ./controllers/adherent */ \"./src/controllers/adherent.js\")\n  const employeController = __webpack_require__(/*! ./controllers/employee */ \"./src/controllers/employee.js\")\n\n  // ipc adherent\n  electron__WEBPACK_IMPORTED_MODULE_0__[\"ipcMain\"].handle('fetchAdherents', adherentController.fetchAdherents)\n  electron__WEBPACK_IMPORTED_MODULE_0__[\"ipcMain\"].handle('fetchAdherentsWithLimit', adherentController.fetchAdherentsWithLimit)\n  electron__WEBPACK_IMPORTED_MODULE_0__[\"ipcMain\"].handle('insertAdherent', adherentController.insertAdherent)\n  electron__WEBPACK_IMPORTED_MODULE_0__[\"ipcMain\"].handle('getAdherent', adherentController.getAdherent)\n  electron__WEBPACK_IMPORTED_MODULE_0__[\"ipcMain\"].handle('searchAdherent', adherentController.searchAdherent)\n\n  // ipc employee\n  electron__WEBPACK_IMPORTED_MODULE_0__[\"ipcMain\"].handle('fetchEmployes', employeController.fetchEmployes)\n  electron__WEBPACK_IMPORTED_MODULE_0__[\"ipcMain\"].handle('loginEmploye', employeController.loginEmploye)\n\n  createWindow()\n})\n\n// Exit cleanly on request from parent process in development mode.\nif (isDevelopment) {\n  if (process.platform === 'win32') {\n    process.on('message', (data) => {\n      if (data === 'graceful-exit') {\n        electron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].quit()\n      }\n    })\n  } else {\n    process.on('SIGTERM', () => {\n      electron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].quit()\n    })\n  }\n}\n\n\n// générate fake data only dev\nif (isDevelopment && !process.env.IS_TEST) {\n  electron__WEBPACK_IMPORTED_MODULE_0__[\"ipcMain\"].on('fake_data', async (event, arg) => {\n    try {\n      await Object(_fixtures_app_fixture__WEBPACK_IMPORTED_MODULE_3__[\"resetAllTable\"])()\n      await Object(_fixtures_app_fixture__WEBPACK_IMPORTED_MODULE_3__[\"generateFakeDataModel\"])()\n      await Object(_fixtures_app_fixture__WEBPACK_IMPORTED_MODULE_3__[\"generateEmployee\"])()\n    } catch (error) {\n      console.error(error)\n    }\n  })\n\n  // Génère des fausse donnée\n  // ipcMain.emit('fake_data', /* arg */)\n}\n\n//# sourceURL=webpack:///./src/background.js?");
+
+/***/ }),
+
+/***/ "./src/controllers/adherent.js":
+/*!*************************************!*\
+  !*** ./src/controllers/adherent.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const Adherent = __webpack_require__(/*! ../models/adherent */ \"./src/models/adherent.js\")\n\nconst fetchAdherents = async (event) => {\n    try {\n        const adherents = await Adherent.fetch();\n        if (adherents) {\n            return adherents\n        }\n    } catch (error) {\n        console.error(error)\n    }\n}\n\nconst fetchAdherentsWithLimit = async (event, limit) => {\n    try {\n        const adherents = await Adherent.fetchWithLimit(limit);\n        if (adherents) {\n            return adherents\n        }\n    } catch (error) {\n        console.error(error)\n    }\n}\n\nconst insertAdherent = async (event, adherent) => {\n    try {\n        const result = await Adherent.insert(adherent)\n        return result\n    } catch (error) {\n        console.error(error)\n    }\n}\n\nconst getAdherent = async (event, id) => {\n    try {\n        const adherent = await Adherent.get(id)\n        if (adherent) {\n            // event.sender.send('adherent', adherent)\n            // event.reply(adherent)\n            return adherent\n        }\n        return false\n    } catch (error) {\n        console.error(error)\n    }\n}\n\nconst searchAdherent = async (event, search) => {\n    try {\n        const adherents = await Adherent.search(search)\n        if (adherents) {\n            // event.sender.send('searchAdherent', adherents)\n            return adherents\n        }\n    } catch (error) {\n        console.error(error)\n    }\n}\n\nmodule.exports = {\n    fetchAdherents,\n    insertAdherent,\n    getAdherent,\n    searchAdherent,\n    fetchAdherentsWithLimit\n}\n\n//# sourceURL=webpack:///./src/controllers/adherent.js?");
+
+/***/ }),
+
+/***/ "./src/controllers/employee.js":
+/*!*************************************!*\
+  !*** ./src/controllers/employee.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const Employee = __webpack_require__(/*! ../models/employee */ \"./src/models/employee.js\")\nconst argon2 = __webpack_require__(/*! argon2 */ \"argon2\")\n\nconst fetchEmployes = async (event) => {\n    try {\n        const employees = await Employee.fetch();\n        if (employees) {\n            event.sender.send('allEmployes', employees)\n        }\n    } catch (error) {\n        console.error(error)\n    }\n}\n\nconst loginEmploye = async (event, email, password) => {\n    try {\n        const employee = await Employee.login(email);\n        if (employee) {\n            const passwordHash = await argon2.verify(employee.password, password)\n            if (passwordHash) {\n                return employee\n            }\n            return false\n        }\n    } catch (error) {\n        console.error(error)\n    }\n}\n\nmodule.exports = {\n    fetchEmployes,\n    loginEmploye\n}\n\n//# sourceURL=webpack:///./src/controllers/employee.js?");
+
+/***/ }),
+
+/***/ "./src/database.js":
+/*!*************************!*\
+  !*** ./src/database.js ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const mysql = __webpack_require__(/*! promise-mysql */ \"promise-mysql\");\n\n\nconst connection = mysql.createConnection({\n    host: 'localhost',\n    user: 'root',\n    password: 'root',\n    database: 'up'\n})\n\n\nfunction getConnection() {\n    return connection\n}\n\nmodule.exports = { getConnection }\n\n//# sourceURL=webpack:///./src/database.js?");
+
+/***/ }),
+
+/***/ "./src/fixtures/app_fixture.js":
+/*!*************************************!*\
+  !*** ./src/fixtures/app_fixture.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const { getConnection } = __webpack_require__(/*! ../database */ \"./src/database.js\");\nconst data = __webpack_require__(/*! ./fake_name */ \"./src/fixtures/fake_name.json\")\nconst argon2 = __webpack_require__(/*! argon2 */ \"argon2\")\n\n// Cette fonction permet de remettre à zéro une base de donnée, NE JAMAIS UTILISER EN PRODUCTION\nasync function resetAllTable() {\n    try {\n        const conn = await getConnection()\n        await conn.query(\"TRUNCATE TABLE clients\")\n        await conn.query(\"TRUNCATE TABLE employes\")\n    }\n    catch (error) {\n        console.error(error)\n    }\n}\n\n// Permet de générée des données sur des adherents\nasync function generateFakeDataModel() {\n    try {\n        const conn = await getConnection()\n        for (let i = 0; i < 25; i++) {\n            const nomIndex = Math.floor(Math.random() * data['noms'].length);\n            const prenomIndex = Math.floor(Math.random() * data['prenoms'].length);\n\n            const adherent = {\n                nom: data['noms'][nomIndex],\n                prenom: data['prenoms'][prenomIndex],\n                email: data['prenoms'][prenomIndex] + \".\" + data['noms'][nomIndex] + \"@gmail.com\",\n                adresse: Math.floor(Math.random() * 200) + \" rue de la \" + data['noms'][nomIndex],\n                telephone: \"0123456789\",\n                mobile: \"0123456789\",\n                numero_carte: Math.floor(Math.random() * (4976 - 4000 + 1) + 4000),\n                date_expiration: (() => {\n                    const startDate = new Date(\"2023-05-01\")\n                    const endDate = new Date(\"2026-12-31\")\n                    const diff = endDate.getTime() - startDate.getTime()\n                    const randomTime = startDate.getTime() + Math.random() * diff\n                    return new Date(randomTime)\n                })(),\n                cryptogramme: Math.floor(Math.random() * 999) + 1\n            }\n            await conn.query(\"INSERT INTO clients SET ?\", adherent)\n        }\n    }\n    catch (error) {\n        console.error(error)\n    }\n}\n\n// Permet de générer un employé\nasync function generateEmployee() {\n    try {\n\n        const passwordHash = await argon2.hash('1234')\n\n        const employee = {\n            nom: 'John',\n            prenom: 'Doe',\n            email: 'johndoe@gmail.com',\n            password: passwordHash,\n            service: 'Accueil'\n        }\n\n        const conn = await getConnection()\n        await conn.query(\"INSERT INTO employes SET ?\", employee)\n\n    }\n    catch (error) {\n        console.error(error)\n    }\n}\n\nmodule.exports = {\n    resetAllTable,\n    generateFakeDataModel,\n    generateEmployee\n}\n\n\n//# sourceURL=webpack:///./src/fixtures/app_fixture.js?");
+
+/***/ }),
+
+/***/ "./src/fixtures/fake_name.json":
+/*!*************************************!*\
+  !*** ./src/fixtures/fake_name.json ***!
+  \*************************************/
+/*! exports provided: noms, prenoms, default */
+/***/ (function(module) {
+
+eval("module.exports = JSON.parse(\"{\\\"noms\\\":[\\\"Dubois\\\",\\\"Martin\\\",\\\"Durand\\\",\\\"Lefebvre\\\",\\\"Leroy\\\",\\\"Fournier\\\",\\\"Moreau\\\",\\\"Girard\\\",\\\"Bonnet\\\",\\\"Dupont\\\"],\\\"prenoms\\\":[\\\"Jean\\\",\\\"Luc\\\",\\\"Marie\\\",\\\"Pierre\\\",\\\"Isabelle\\\",\\\"Sophie\\\",\\\"Alexandre\\\",\\\"Emilie\\\",\\\"Nicolas\\\",\\\"Julie\\\"]}\");\n\n//# sourceURL=webpack:///./src/fixtures/fake_name.json?");
+
+/***/ }),
+
+/***/ "./src/models/adherent.js":
+/*!********************************!*\
+  !*** ./src/models/adherent.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const { getConnection } = __webpack_require__(/*! ../database */ \"./src/database.js\");\n\nconst Adherent = {}\n\nAdherent.fetch = async () => {\n    try {\n        const conn = await getConnection()\n        const result = await conn.query(\"SELECT * FROM clients ORDER BY id DESC\")\n        return result\n    } catch (error) {\n        console.error(error)\n    }\n}\n\nAdherent.fetchWithLimit = async (limit) => {\n    try {\n        const conn = await getConnection()\n        const result = await conn.query(\"SELECT * FROM clients ORDER BY id DESC LIMIT ?\", limit)\n        return result\n    } catch (error) {\n        console.error(error)\n    }\n}\n\nAdherent.insert = async (adherent) => {\n    try {\n        const conn = await getConnection()\n        const result = await conn.query(\"INSERT INTO clients SET ?\", adherent)\n\n        return result\n    }\n    catch (error) {\n        console.error(error)\n    }\n}\n\nAdherent.get = async (id) => {\n    try {\n        const conn = await getConnection()\n        const result = await conn.query(\"SELECT * FROM clients WHERE id = ?\", id)\n\n        return result[0]\n    } catch (error) {\n        console.error(error)\n    }\n}\n\nAdherent.search = async (search) => {\n    try {\n        const conn = await getConnection()\n        const result = await conn.query(\"SELECT * FROM clients WHERE nom like '%\" + search + \"%' or prenom like '%\" + search + \"%' or numero_carte like '%\" + search + \"%'\")\n\n        return result\n    } catch (error) {\n        console.error(error)\n    }\n}\n\nmodule.exports = Adherent\n\n\n//# sourceURL=webpack:///./src/models/adherent.js?");
+
+/***/ }),
+
+/***/ "./src/models/employee.js":
+/*!********************************!*\
+  !*** ./src/models/employee.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const { getConnection } = __webpack_require__(/*! ../database */ \"./src/database.js\");\n\nconst Employee = {}\n\nEmployee.fetch = async () => {\n    try {\n        const conn = await getConnection()\n        const result = await conn.query(\"SELECT * FROM clients ORDER BY id DESC\")\n\n        return result\n    } catch (error) {\n        console.error(error)\n    }\n}\n\nEmployee.get = async (id) => {\n    try {\n        const conn = await getConnection()\n        const result = await conn.query(\"SELECT * FROM employes WHERE id = ?\", id)\n\n        return result[0]\n    } catch (error) {\n        console.error(error)\n    }\n}\n\nEmployee.login = async (email) => {\n    try {\n        const conn = await getConnection()\n        const result = await conn.query(\"SELECT * FROM employes WHERE email = ?\", email)\n\n        return result[0]\n    } catch (error) {\n        console.error(error)\n    }\n}\n\nmodule.exports = Employee\n\n//# sourceURL=webpack:///./src/models/employee.js?");
 
 /***/ }),
 
@@ -1788,6 +1865,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var elec
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("module.exports = __webpack_require__(/*! /Users/tonyemma/Documents/Projet desktop/up.hoop/src/background.js */\"./src/background.js\");\n\n\n//# sourceURL=webpack:///multi_./src/background.js?");
+
+/***/ }),
+
+/***/ "argon2":
+/*!**************************************!*\
+  !*** external "require(\"argon2\")" ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"argon2\");\n\n//# sourceURL=webpack:///external_%22require(\\%22argon2\\%22)%22?");
 
 /***/ }),
 
@@ -1865,6 +1953,17 @@ eval("module.exports = require(\"https\");\n\n//# sourceURL=webpack:///external_
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"path\");\n\n//# sourceURL=webpack:///external_%22path%22?");
+
+/***/ }),
+
+/***/ "promise-mysql":
+/*!*********************************************!*\
+  !*** external "require(\"promise-mysql\")" ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"promise-mysql\");\n\n//# sourceURL=webpack:///external_%22require(\\%22promise-mysql\\%22)%22?");
 
 /***/ }),
 
