@@ -9,9 +9,9 @@
                         </span>
                     </div>
                     <div class="flex items-center justify-end flex-1 text-green-500 text-base font-bold">
-                        <LinkTo :to="{
-                            name: 'AddAdherent'
-                        }" text="+ Ajouter un nouveau élément" style="" class="font-medium shadow btn btn-primary" />
+                        <Modal text="+ Ajouter un nouveau adhérent" title="Ajouter un nouveau adhérent">
+                            <NewAdherent />
+                        </Modal>
                     </div>
                 </div>
                 <Table :adherents="adherentToShow" />
@@ -36,8 +36,9 @@
 
 
 <script>
-import LinkTo from '@/components/ui/LinkTo.vue';
 import Table from '@/components/adherents/TableAdherent.vue';
+import Modal from '@/components/ui/modal/UiModal.vue'
+import NewAdherent from '@/components/adherents/NewAdherent.vue';
 
 const { ipcRenderer } = require("electron")
 
@@ -45,7 +46,8 @@ export default {
     name: 'PageAdherent',
     components: {
         Table,
-        LinkTo
+        Modal,
+        NewAdherent
     },
     data() {
         return {

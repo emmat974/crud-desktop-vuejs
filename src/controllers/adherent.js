@@ -22,8 +22,9 @@ const fetchAdherentsWithLimit = async (event, limit) => {
     }
 }
 
-const insertAdherent = async (event, adherent) => {
+const insertAdherent = async (event, adherentString) => {
     try {
+        const adherent = JSON.parse(adherentString)
         const result = await Adherent.insert(adherent)
         return result
     } catch (error) {

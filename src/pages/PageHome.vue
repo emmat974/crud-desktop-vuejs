@@ -20,9 +20,9 @@
                         </span>
                     </div>
                     <div class="flex items-center justify-end flex-1 text-green-500 text-base font-bold">
-                        <LinkTo :to="{
-                            name: 'AddAdherent'
-                        }" text="+" style="" class="font-medium shadow btn btn-primary" />
+                        <Modal text="+" title="Ajouter un nouveau adhérent">
+                            <NewAdherent />
+                        </Modal>
                     </div>
                 </div>
                 <!-- tableau -->
@@ -44,7 +44,8 @@ table {
 <script>
 import GraphChart from '@/components/graph/GraphChart.vue';
 import TableAdherent from '@/components/adherents/TableAdherent.vue';
-import LinkTo from '@/components/ui/LinkTo.vue';
+import Modal from '@/components/ui/modal/UiModal.vue'
+import NewAdherent from '@/components/adherents/NewAdherent.vue';
 
 
 const { ipcRenderer } = require("electron")
@@ -54,7 +55,8 @@ export default {
     components: {
         GraphChart,
         TableAdherent,
-        LinkTo
+        Modal,
+        NewAdherent
     },
     data() {
         return {
