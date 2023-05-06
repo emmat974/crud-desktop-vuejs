@@ -14,7 +14,21 @@
                         }" text="+ Ajouter un nouveau élément" style="" class="font-medium shadow btn btn-primary" />
                     </div>
                 </div>
-                <Table :adherents="adherents" />
+                <Table :adherents="adherentToShow" />
+                <div>
+
+                    <button @click="previousPage"
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-[#F59100] border border-gray-300 rounded-lg">
+                        Précédente
+                    </button>
+
+                    <!-- Next Button -->
+                    <button @click="nextPage"
+                        class="inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-white bg-[#F59100] border border-gray-300 rounded-lg">
+                        Suivante
+                    </button>
+
+                </div>
             </div>
         </div>
     </div>
@@ -35,13 +49,36 @@ export default {
     },
     data() {
         return {
-            adherents: []
+            adherents: [],
+            adherentPerPage: 7,
+            currentPage: 0
         }
     },
     created() {
         this.fetchAdherents()
     },
+    computed: {
+        adherentToShow() {
+            const start = this.currentPage * this.adherentPerPage
+            const end = start + this.adherentPerPage
+
+            return this.adherents.slice(start, end)
+        },
+    },
     methods: {
+        totalPages() {
+            return Math.ceil(this.adherents.length / this.adherentPerPage)
+        },
+        previousPage() {
+            if (this.currentPage > 0) {
+                this.currentPage--
+            }
+        },
+        nextPage() {
+            if (this.currentPage < this.totalPages() - 1) {
+                this.currentPage++
+            }
+        },
         async fetchAdherents() {
             this.adherents = await ipcRenderer.invoke('fetchAdherents')
         },
