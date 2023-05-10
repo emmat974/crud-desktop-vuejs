@@ -4,18 +4,45 @@
         role="alert">
         <strong class="font-bold"> Vous n'avez pas compléter tous les champs </strong>
     </div>
-    <form @submit.prevent="validForm" method="post" id="formAddAdherent">
-        <Text name="prenom" label="Prénom" v-model.lazy="localAdherent.prenom" />
-        <Text name="nom" label="Nom" v-model.lazy="localAdherent.nom" />
-        <Text name="email" label="Email" v-model.lazy="localAdherent.email" type="email" />
-        <Text name="telephone" label="Téléphone" v-model.lazy="localAdherent.telephone" />
-        <Text name="mobile" label="Mobile" v-model.lazy="localAdherent.mobile" />
-        <Textarea name="adresse" label="Adresse" v-model.lazy="localAdherent.adresse" />
-        <Text name="numeroCarte" label="Numéro carte" v-model.lazy="localAdherent.numero_carte" type="number" />
-        <Text name="dateExpiration" label="Date d'expériation" v-model.lazy="localAdherent.date_expiration" type="date" />
-        <Text name="cryptogramme" label="Cryptogramme visuel" v-model.lazy="localAdherent.cryptogramme" type="number" />
-        <Button text="Valider" class="btn btn-primary" />
-    </form>
+
+    <div class="w-full">
+        <form @submit.prevent="validForm" method="post" id="formAddAdherent" class="pt-6 pb-8 mb-4">
+            <div class="flex flex-wrap -mx-4 mb-4">
+                <div class="w-full md:w-1/2 px-4 mb-4 md:mb-0">
+                    <Text name="prenom" label="Prénom" v-model.lazy="localAdherent.prenom" />
+                </div>
+                <div class="w-full md:w-1/2 px-4">
+                    <Text name="nom" label="Nom" v-model.lazy="localAdherent.nom" />
+                </div>
+            </div>
+            <div class="mb-4">
+                <Text name="email" label="Email" v-model.lazy="localAdherent.email" type="email" />
+            </div>
+            <div class="mb-4">
+                <Text name="telephone" label="Téléphone" v-model.lazy="localAdherent.telephone" />
+            </div>
+            <div class="mb-4">
+                <Textarea name="adresse" label="Adresse" v-model.lazy="localAdherent.adresse" />
+            </div>
+            <div class="flex flex-wrap -mx-4 mb-4">
+                <div class="w-full md:w-1/3 px-4 mb-4 md:mb-0">
+                    <Text name="numeroCarte" label="Numéro carte" v-model.lazy="localAdherent.numero_carte" type="number" />
+                </div>
+                <div class="w-full md:w-1/3 px-4 mb-4 md:mb-0">
+                    <Text name="dateExpiration" label="Date d'expériation" v-model.lazy="localAdherent.date_expiration"
+                        type="date" />
+                </div>
+
+                <div class="w-full md:w-1/3 px-4">
+                    <Text name="cryptogramme" label="Cryptogramme visuel" v-model.lazy="localAdherent.cryptogramme"
+                        type="number" />
+                </div>
+            </div>
+            <div class="flex items-center justify-center">
+                <Button text="Valider" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
 </template>
 
 <style>

@@ -4,6 +4,7 @@ import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 import { generateEmployee, generateFakeDataModel, resetAllTable } from './fixtures/app_fixture'
+import path from 'path'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -17,7 +18,7 @@ async function createWindow() {
   const win = new BrowserWindow({
     width: 1920,
     height: 1080,
-    icon: __dirname + "/src/assets/logo.svg",
+    icon: path.join(__dirname, 'logo.icns'),
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
@@ -116,5 +117,5 @@ if (isDevelopment && !process.env.IS_TEST) {
   })
 
   // Génère des fausse donnée
-  ipcMain.emit('fake_data', /* arg */)
+  // ipcMain.emit('fake_data', /* arg */)
 }

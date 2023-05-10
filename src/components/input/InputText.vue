@@ -1,9 +1,10 @@
 <template>
     <!-- Composant pour créer un input texte -->
     <div>
-        <label class="form-label">{{ label }}</label>
-        <input :type="type" :name="name" :id="name" class="form-control w-full" :value="modelValue"
-            @input="$emit('update:modelValue', $event.target.value)" :placeholder="placeholder" />
+        <label class="block text-gray-700 font-bold mb-2">{{ label }}</label>
+        <input :type="type" :name="name" :id="name"
+            class=" appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" :placeholder="placeholder" />
     </div>
 </template>
 
