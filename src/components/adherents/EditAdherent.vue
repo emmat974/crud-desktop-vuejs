@@ -1,4 +1,5 @@
 <template>
+    <!-- Page pour modifier un adhérent-->
     <FormAdherent :adherent="data" @submit="editAdherent" />
 </template>
 
@@ -24,15 +25,18 @@ export default {
         }
     },
     created() {
+        // On passe les données dans le composant car on ne peut pas modifier une donnée props
         this.data = this.adherent
         this.data.date_expiration = new Date(this.adherent.date_expiration).toISOString().substr(0, 10)
     },
     methods: {
+        // Callback pour lancer édition
         editAdherent(adherent) {
             if (this.$store.getters.getUser.roles == "ADMIN") {
                 this.edit(adherent)
             }
         },
+        // Édit un adhérent, retourne une promesse
         async edit(adherent) {
             try {
                 const result = await ipcRenderer.invoke('updateAdherent', JSON.stringify(adherent))

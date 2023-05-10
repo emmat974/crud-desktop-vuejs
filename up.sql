@@ -52,7 +52,7 @@ CREATE TABLE `employes` (
   `prenom` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `service` varchar(255) NOT NULL
+  `roles` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

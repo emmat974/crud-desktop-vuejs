@@ -1,4 +1,5 @@
 <template>
+    <!-- Formulaire de recherche -->
     <div class="hidden sm:block flex-shrink flex-grow-0 justify-start px-2">
         <div class="inline-block">
             <div class="inline-flex items-center max-w-full">
@@ -47,12 +48,14 @@ export default {
         }
     },
     methods: {
+        // Vérifie si la donnée et valide
         checkForm(e) {
             e.preventDefault();
             if (this.search != null) {
                 this.searchAdherent()
             }
         },
+        // Recherche de la donnée et increment le store avec le résultat trouvé
         async searchAdherent() {
             try {
                 const results = await ipcRenderer.invoke('searchAdherent', this.search)

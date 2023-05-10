@@ -1,4 +1,5 @@
 <template>
+    <!-- Composant pour le modal -->
     <div class="relative">
         <!-- Bouton d'ouverture du modal -->
         <button @click="showModal = true" class="bg-[#F59100] text-white font-medium font-light py-2 px-4 rounded-lg">

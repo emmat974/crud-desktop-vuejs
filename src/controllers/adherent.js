@@ -1,5 +1,6 @@
 const Adherent = require("../models/adherent")
 
+// On récupère tous les adhérents
 const fetchAdherents = async (event) => {
     try {
         const adherents = await Adherent.fetch();
@@ -11,6 +12,7 @@ const fetchAdherents = async (event) => {
     }
 }
 
+// On récupères tous les adhérents et on fixe une limitation
 const fetchAdherentsWithLimit = async (event, limit) => {
     try {
         const adherents = await Adherent.fetchWithLimit(limit);
@@ -22,6 +24,7 @@ const fetchAdherentsWithLimit = async (event, limit) => {
     }
 }
 
+// On ajout un adhérent
 const insertAdherent = async (event, adherentString) => {
     try {
         const adherent = JSON.parse(adherentString)
@@ -58,6 +61,7 @@ const searchAdherent = async (event, search) => {
     }
 }
 
+// On met un jour un adhérent
 const updateAdherent = async (event, adherentString) => {
     try {
         const adherent = JSON.parse(adherentString)
@@ -69,6 +73,7 @@ const updateAdherent = async (event, adherentString) => {
     }
 }
 
+// On supprime un adhérent
 const deleteAdherent = async (event, id) => {
     try {
         const result = await Adherent.delete(id)

@@ -1,4 +1,5 @@
 <template>
+    <!-- Formulaire de page de connexion -->
     <FormConnexion />
 </template>
 

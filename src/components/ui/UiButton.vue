@@ -1,4 +1,5 @@
 <template>
+    <!-- Composant pour créer un bouton -->
     <button type="submit" @click="$emit('onClick')" class="text-white font-medium font-light py-2 px-4 rounded-lg">
         <template v-if="icon">
             <i :class="icon"></i>

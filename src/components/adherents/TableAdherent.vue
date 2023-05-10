@@ -1,4 +1,5 @@
 <template>
+    <!-- Tableau pour afficher les adhérents qu'on lui aurait passé -->
     <table class="w-full text-sm text-left my-4">
         <tbody>
             <tr class="bg-[#EDF2F2] shadow text-black text-base" v-for="adherent in adherents" :key="adherent.id">
@@ -31,6 +32,7 @@ export default {
         }
     },
     methods: {
+        // Affiche le nom & prénom de l'adhérent
         fullname(adherent) {
             return adherent.nom + " " + adherent.prenom
         }

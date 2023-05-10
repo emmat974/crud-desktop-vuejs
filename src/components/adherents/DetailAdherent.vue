@@ -1,4 +1,5 @@
 <template>
+    <!-- Permet d'afficher un adhérent -->
     <div v-if="!loading">
         <div class="pt-6 px-4 w-full pt-6 px-4 w-full grid grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-4">
             <div>
@@ -20,6 +21,7 @@
                             </span>
                         </div>
                     </div>
+                    <!-- Si utilisateur est un administrateur, peut supprimer & modifier adherent courant-->
                     <template v-if="this.$store.getters.getUser.roles == 'ADMIN'">
                         <Button class="btn btn-danger" text="Supprimer" @onClick="removeAdherent(adherent.id)" />
                         <Modal text="Modifier" title="Modifier l'adhérent">
@@ -125,12 +127,15 @@ export default {
         }
     },
     created() {
+        // On récupère un adhérent par rapport à l'id qu'on lui aurait passé
         this.getAdherent(this.id)
     },
     methods: {
+        // On affiche le nom & prénom de l'adhérent
         fullname() {
             return this.adherent.nom + " " + this.adherent.prenom
         },
+        // On récupère adhérent par rapport à l'id
         async getAdherent(id) {
             this.loading = true
             try {
@@ -141,6 +146,7 @@ export default {
             this.loading = false
 
         },
+        // On supprime l'adhérent
         async removeAdherent() {
             try {
                 if (this.$store.getters.getUser.roles == 'ADMIN') {

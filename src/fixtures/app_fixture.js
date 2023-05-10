@@ -47,7 +47,7 @@ async function generateFakeDataModel() {
     }
 }
 
-// Permet de générer un employé
+// Permet de générer un employé de type employé & de type administrateur
 async function generateEmployee() {
     try {
 

@@ -1,5 +1,6 @@
 <template>
     <div class="pt-6 px-4 w-full pt-6 px-4 w-full grid grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-4">
+        <!-- Section pour afficher le graphique -->
         <div style="grid-column: span 2/3;">
             <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
                 <div class="flex items-center justify-between mb-4">
@@ -8,10 +9,12 @@
                             adhérant</span>
                     </div>
                 </div>
+                <!-- Le graphique -->
                 <GraphChart :data="data" width="800" height="400" />
             </div>
         </div>
         <div>
+            <!-- Section pour afficher les 5 dernières adhérents sous forme de tableau -->
             <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
                 <div class="flex items-center justify-between mb-4">
                     <div class="flex-shrink-0">
@@ -19,13 +22,14 @@
                             Adhérants
                         </span>
                     </div>
+                    <!-- Création de nouveau adhérent-->
                     <div class="flex items-center justify-end flex-1 text-green-500 text-base font-bold">
                         <Modal text="+" title="Ajouter un nouveau adhérent">
                             <NewAdherent />
                         </Modal>
                     </div>
                 </div>
-                <!-- tableau -->
+                <!-- Résultat des 5 dernières adhérents, sous formes de tableau -->
                 <TableAdherent :adherents="adherents" />
                 <!-- end tableau -->
             </div>
@@ -60,6 +64,7 @@ export default {
     },
     data() {
         return {
+            // Les données pour le graphique, peut être rendu dynamique mais doit respecter cette forme
             data: {
                 labels: ['Mar 1', 'Mar 2', 'Mar 3', 'Mar 4', 'Mar 5'],
                 datasets: [{
@@ -71,13 +76,16 @@ export default {
                     min: 0
                 }],
             },
+            // Tableau d'adhérent
             adherents: []
         }
     },
     created() {
+        // Récupère les adhérents
         this.fetchAdherents()
     },
     methods: {
+        // Récupères les 5 dernières adhérents
         async fetchAdherents() {
             this.adherents = await ipcRenderer.invoke('fetchAdherentsWithLimit', 5)
         },

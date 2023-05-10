@@ -1,4 +1,5 @@
 <template>
+    <!-- Composant pour les information de l'utilisateur en haut page -->
     <div class="flex-initial">
         <div class="flex justify-end items-center relative">
 

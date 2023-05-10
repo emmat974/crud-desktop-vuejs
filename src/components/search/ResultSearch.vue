@@ -1,4 +1,5 @@
 <template>
+    <!-- Page pour afficher les résultats d'une recherche -->
     <Table :adherents="adherents" />
 </template>
 

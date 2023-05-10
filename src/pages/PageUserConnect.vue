@@ -1,26 +1,22 @@
 <template>
     <div class="relative flex min-h-screen">
-        <!-- Sidebar -->
+        <!-- Bar de navigation -->
         <Navigation />
-        <!-- End sidebar -->
 
         <!-- Main -->
         <div class="flex-1 bg-[#EDF2F2] p-4" id="main">
             <nav class="w-full flex relative justify-between items-center mx-auto mt-5 px-8 h-20">
-                <!-- logo -->
-                <TitleTopBar title="test" />
-                <!-- end logo -->
+                <!-- Titre de la page courant -->
+                <TitleTopBar />
 
-                <!-- search bar -->
+                <!-- Barre de recherche -->
                 <Search />
-                <!-- end search bar -->
 
-                <!-- login -->
+                <!-- Information concernant l'utilisateur -->
                 <UserInfo />
-                <!-- end login -->
             </nav>
 
-            <!-- Le contain -->
+            <!-- Le container-->
             <div class="p-8">
                 <router-view></router-view>
             </div>

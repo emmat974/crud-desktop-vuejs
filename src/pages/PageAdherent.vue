@@ -8,21 +8,25 @@
                             Adhérants
                         </span>
                     </div>
+                    <!-- Modal pour la création d'un nouveau adhérent-->
                     <div class="flex items-center justify-end flex-1 text-green-500 text-base font-bold">
                         <Modal text="+ Ajouter un nouveau adhérent" title="Ajouter un nouveau adhérent">
                             <NewAdherent />
                         </Modal>
                     </div>
                 </div>
+                <!-- Affichage du résultat finale -->
                 <Table :adherents="adherentToShow" />
                 <div>
 
+                    <!-- Pagination -->
+                    <!-- Bouton précédent -->
                     <button @click="previousPage"
                         class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-[#F59100] border border-gray-300 rounded-lg">
                         Précédente
                     </button>
 
-                    <!-- Next Button -->
+                    <!-- Bouton suivante -->
                     <button @click="nextPage"
                         class="inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-white bg-[#F59100] border border-gray-300 rounded-lg">
                         Suivante
@@ -57,9 +61,11 @@ export default {
         }
     },
     created() {
+        // Récèpère les adhérents
         this.fetchAdherents()
     },
     computed: {
+        // Affiche les adhérents par rapport à la page courant
         adherentToShow() {
             const start = this.currentPage * this.adherentPerPage
             const end = start + this.adherentPerPage
@@ -68,19 +74,23 @@ export default {
         },
     },
     methods: {
+        // Calcul le nombre de page total
         totalPages() {
             return Math.ceil(this.adherents.length / this.adherentPerPage)
         },
+        // Pagination pour la page précédent
         previousPage() {
             if (this.currentPage > 0) {
                 this.currentPage--
             }
         },
+        // Pagination pour la page suivante
         nextPage() {
             if (this.currentPage < this.totalPages() - 1) {
                 this.currentPage++
             }
         },
+        // Récupère les adhérents, retourne une promesse
         async fetchAdherents() {
             this.adherents = await ipcRenderer.invoke('fetchAdherents')
         },

@@ -1,4 +1,5 @@
 <template>
+    <!-- Page pour créer un nouveau adhérent -->
     <FormAdherent :adherent="adherent" @submit="addAdherent" />
 </template>
 
@@ -14,6 +15,7 @@ export default {
     },
     data() {
         return {
+            // Valeur par rapport d'un adhérent
             adherent: {
                 nom: null,
                 prenom: null,
@@ -28,9 +30,11 @@ export default {
         }
     },
     methods: {
+        // Callback pour ajouter un nouveau adhérent
         addAdherent(newAdherent) {
             this.insertAdherent(newAdherent)
         },
+        // Ajoute un adhérent, retourne une promesse et renvoie sur la page du nouveau adhérent créer
         async insertAdherent(adherent) {
             try {
                 const result = await ipcRenderer.invoke('insertAdherent', JSON.stringify(adherent))

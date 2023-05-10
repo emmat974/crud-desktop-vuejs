@@ -1,4 +1,5 @@
 <template>
+    <!-- Composant du menu à gauche -->
     <div class="text-white w-60">
         <router-link to="/home">
             <img src="@/assets/logo.svg" alt="logo" class="h-25 w-25 ml-10 mt-10 mr-10">

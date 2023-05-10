@@ -2,6 +2,7 @@ const { getConnection } = require('../database');
 
 const Employee = {}
 
+// On récupère tous les employées et on trie par rapport aux dernières ajouts
 Employee.fetch = async () => {
     try {
         const conn = await getConnection()
@@ -13,6 +14,7 @@ Employee.fetch = async () => {
     }
 }
 
+// On récupère un employé par rapport à son id
 Employee.get = async (id) => {
     try {
         const conn = await getConnection()
@@ -24,6 +26,7 @@ Employee.get = async (id) => {
     }
 }
 
+// On récupère un email par rapport à son email
 Employee.login = async (email) => {
     try {
         const conn = await getConnection()

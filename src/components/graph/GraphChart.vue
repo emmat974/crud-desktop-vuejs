@@ -1,4 +1,5 @@
 <template>
+    <!-- Créer un graphite sur GraphJS -->
     <canvas id="graph" :width="width" :height="height"></canvas>
 </template>
 

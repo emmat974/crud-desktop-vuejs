@@ -1,4 +1,5 @@
 <template>
+    <!-- Composant pour créer un textarea -->
     <div class="mb-3">
         <label class="form-label">{{ label }}</label>
         <textarea :name="name" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)"> </textarea>

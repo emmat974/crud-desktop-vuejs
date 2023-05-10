@@ -1,6 +1,7 @@
 const Employee = require('../models/employee')
 const argon2 = require('argon2')
 
+// On récupère tous les employés
 const fetchEmployes = async (event) => {
     try {
         const employees = await Employee.fetch();
@@ -12,6 +13,7 @@ const fetchEmployes = async (event) => {
     }
 }
 
+// On récupère un adhérent par rapport à son email et on vérifie si le mot de passe correspond à la base de donnée
 const loginEmploye = async (event, email, password) => {
     try {
         const employee = await Employee.login(email);

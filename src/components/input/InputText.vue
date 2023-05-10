@@ -1,4 +1,5 @@
 <template>
+    <!-- Composant pour créer un input texte -->
     <div>
         <label class="form-label">{{ label }}</label>
         <input :type="type" :name="name" :id="name" class="form-control w-full" :value="modelValue"

@@ -1,4 +1,5 @@
 <template>
+    <!-- Composant pour changer de page -->
     <router-link :to="to">{{ text }}</router-link>
 </template>
 

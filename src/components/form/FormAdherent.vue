@@ -1,4 +1,5 @@
 <template>
+    <!-- Formulaire pour un adhérent-->
     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" v-show="messageError"
         role="alert">
         <strong class="font-bold"> Vous n'avez pas compléter tous les champs </strong>
@@ -53,6 +54,7 @@ export default {
         }
     },
     methods: {
+        // Vérification des données avant d'appeler le callback
         validForm(e) {
             e.preventDefault()
             this.messageError = false

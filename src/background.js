@@ -17,6 +17,7 @@ async function createWindow() {
   const win = new BrowserWindow({
     width: 1920,
     height: 1080,
+    icon: __dirname + "/src/assets/logo.svg",
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
@@ -115,5 +116,5 @@ if (isDevelopment && !process.env.IS_TEST) {
   })
 
   // Génère des fausse donnée
-  // ipcMain.emit('fake_data', /* arg */)
+  ipcMain.emit('fake_data', /* arg */)
 }

@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 
+// Création de store pour les data de résultat & d'utilisateur
 const store = createStore({
     state: {
         searchResults: [],
