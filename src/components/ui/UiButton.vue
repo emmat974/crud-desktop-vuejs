@@ -1,11 +1,23 @@
 <template>
-    <button type="submit" @click="$emit('onClick')">
+    <button type="submit" @click="$emit('onClick')" class="text-white font-medium font-light py-2 px-4 rounded-lg">
         <template v-if="icon">
             <i :class="icon"></i>
         </template>
         {{ text }}
     </button>
 </template>
+
+<style>
+.btn-primary {
+    color: white;
+    background: #F59100;
+}
+
+.btn-danger {
+    color: white;
+    background: red;
+}
+</style>
 
 <script>
 

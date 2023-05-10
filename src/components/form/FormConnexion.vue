@@ -9,6 +9,11 @@
                             Connexion
                         </h1>
                     </div>
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                        v-show="messageError" role="alert">
+                        <strong class="font-bold"> Mot de passe/Email incorrect </strong>
+                    </div>
+
                     <form class="space-y-4 md:space-y-6" @submit="checkForm" method="post">
                         <div>
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
@@ -42,7 +47,8 @@ export default {
         return {
             loading: false,
             email: null,
-            password: null
+            password: null,
+            messageError: false
         }
     },
     methods: {
@@ -57,6 +63,8 @@ export default {
                     if (result) {
                         this.$store.commit('setUser', result)
                         this.$router.push({ name: 'Home' })
+                    } else {
+                        this.messageError = true
                     }
                 }).catch((error) => {
                     console.error(error)

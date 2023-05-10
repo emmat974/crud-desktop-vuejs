@@ -25,7 +25,7 @@
                         {{ this.$store.getters.getUser.nom }}
                         {{ this.$store.getters.getUser.prenom }}
                     </h3>
-                    <span class="px-2 text-slate-700 font-light">Employé</span>
+                    <span class="px-2 text-slate-700 font-light">{{ this.$store.getters.getUser.roles }}</span>
 
                 </div>
             </div>

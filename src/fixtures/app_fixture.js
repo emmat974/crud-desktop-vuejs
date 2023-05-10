@@ -58,11 +58,21 @@ async function generateEmployee() {
             prenom: 'Doe',
             email: 'johndoe@gmail.com',
             password: passwordHash,
-            service: 'Accueil'
+            roles: 'EMPLOYE'
         }
 
         const conn = await getConnection()
         await conn.query("INSERT INTO employes SET ?", employee)
+
+        const admin = {
+            nom: 'Jane',
+            prenom: 'Doe',
+            email: 'janedoe@gmail.com',
+            password: passwordHash,
+            roles: 'ADMIN'
+        }
+
+        await conn.query("INSERT INTO employes SET ?", admin)
 
     }
     catch (error) {

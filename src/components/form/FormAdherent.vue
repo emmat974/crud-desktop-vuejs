@@ -13,7 +13,7 @@
         <Text name="numeroCarte" label="Numéro carte" v-model.lazy="localAdherent.numero_carte" type="number" />
         <Text name="dateExpiration" label="Date d'expériation" v-model.lazy="localAdherent.date_expiration" type="date" />
         <Text name="cryptogramme" label="Cryptogramme visuel" v-model.lazy="localAdherent.cryptogramme" type="number" />
-        <Button text="Ajouter un nouveau adhérent" class="btn btn-primary" />
+        <Button text="Valider" class="btn btn-primary" />
     </form>
 </template>
 

@@ -16,10 +16,16 @@
                     <div class="flex items-center justify-between mb-4">
                         <div class="flex-shrink-0">
                             <span class="text-2xl sm:text-2xl leading-none font-bold text-gray-900">
-                                Information d'adhérent
+                                Information adhérent : {{ fullname() }}
                             </span>
                         </div>
                     </div>
+                    <template v-if="this.$store.getters.getUser.roles == 'ADMIN'">
+                        <Button class="btn btn-danger" text="Supprimer" @onClick="removeAdherent(adherent.id)" />
+                        <Modal text="Modifier" title="Modifier l'adhérent">
+                            <EditAdherent :adherent="adherent" />
+                        </Modal>
+                    </template>
                     <span class="text-2xl sm:text-2xl leading-none font-bold text-gray-900">
                         Adresse <br />
                     </span>
@@ -73,11 +79,19 @@
 </template>
 
 <script>
+import Modal from "@/components/ui/modal/UiModal.vue"
+import EditAdherent from "./EditAdherent.vue"
+import Button from "@/components/ui/UiButton.vue"
 
 const { ipcRenderer } = require("electron")
 
 export default {
     name: 'DetailAdherent',
+    components: {
+        Modal,
+        EditAdherent,
+        Button
+    },
     props: {
         id: {
             type: String,
@@ -127,6 +141,18 @@ export default {
             this.loading = false
 
         },
+        async removeAdherent() {
+            try {
+                if (this.$store.getters.getUser.roles == 'ADMIN') {
+                    if (window.confirm('Etes-vous sûr(e) de vouloir supprimer ' + this.fullname() + " ?")) {
+                        await ipcRenderer.invoke('deleteAdherent', this.adherent.id);
+                        this.$router.push({ name: 'Adherent' });
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
     }
 }
 </script>

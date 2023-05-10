@@ -74,6 +74,8 @@ app.on('ready', async () => {
   ipcMain.handle('fetchAdherents', adherentController.fetchAdherents)
   ipcMain.handle('fetchAdherentsWithLimit', adherentController.fetchAdherentsWithLimit)
   ipcMain.handle('insertAdherent', adherentController.insertAdherent)
+  ipcMain.handle('updateAdherent', adherentController.updateAdherent)
+  ipcMain.handle('deleteAdherent', adherentController.deleteAdherent)
   ipcMain.handle('getAdherent', adherentController.getAdherent)
   ipcMain.handle('searchAdherent', adherentController.searchAdherent)
 

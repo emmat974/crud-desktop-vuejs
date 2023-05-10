@@ -58,10 +58,33 @@ const searchAdherent = async (event, search) => {
     }
 }
 
+const updateAdherent = async (event, adherentString) => {
+    try {
+        const adherent = JSON.parse(adherentString)
+        const result = await Adherent.edit(adherent.id, adherent)
+
+        return result
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+const deleteAdherent = async (event, id) => {
+    try {
+        const result = await Adherent.delete(id)
+
+        return result
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 module.exports = {
     fetchAdherents,
     insertAdherent,
     getAdherent,
     searchAdherent,
-    fetchAdherentsWithLimit
+    fetchAdherentsWithLimit,
+    updateAdherent,
+    deleteAdherent
 }
