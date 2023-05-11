@@ -15,32 +15,32 @@ const routes = [
     {
         path: '/home',
         name: 'Home',
-        title: 'Accueil',
         component: Home,
+        meta: { title: 'Accueil' }
     },
     {
         path: '/adherent',
         name: 'Adherent',
-        title: 'Adhérents',
+        meta: { title: 'Adhérents' },
         component: Adherent
     },
     {
         path: '/adherent/:id',
         name: 'DetailAdherent',
-        title: 'Fiche d\'adhérent',
+        meta: { title: 'Fiche d\'adhérent' },
         component: DetailAdherent,
         props: true
     },
     {
         path: '/adherent/add',
         name: 'AddAdherent',
-        title: 'Nouveau adhérent',
+        meta: { title: 'Nouveau adhérent' },
         component: NewAdherent
     },
     {
         path: '/search',
         name: 'Search',
-        title: 'Recherche',
+        meta: { title: 'Recherche' },
         component: Search
     }
 ];

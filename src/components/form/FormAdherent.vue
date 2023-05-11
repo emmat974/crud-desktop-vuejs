@@ -6,7 +6,7 @@
     </div>
 
     <div class="w-full">
-        <form @submit.prevent="validForm" method="post" id="formAddAdherent" class="pt-6 pb-8 mb-4">
+        <form @submit.prevent="validForm" method="post" id="formAddAdherent" class="pt-6 pb-8">
             <div class="flex flex-wrap -mx-4 mb-4">
                 <div class="w-full md:w-1/2 px-4 mb-4 md:mb-0">
                     <Text name="prenom" label="Prénom" v-model.lazy="localAdherent.prenom" />
@@ -19,7 +19,10 @@
                 <Text name="email" label="Email" v-model.lazy="localAdherent.email" type="email" />
             </div>
             <div class="mb-4">
-                <Text name="telephone" label="Téléphone" v-model.lazy="localAdherent.telephone" />
+                <Text name="telephone" label="Fixe" v-model.lazy="localAdherent.telephone" />
+            </div>
+            <div class="mb-4">
+                <Text name="mobile" label="Mobile" v-model.lazy="localAdherent.mobile" />
             </div>
             <div class="mb-4">
                 <Textarea name="adresse" label="Adresse" v-model.lazy="localAdherent.adresse" />
@@ -39,7 +42,7 @@
                 </div>
             </div>
             <div class="flex items-center justify-center">
-                <Button text="Valider" class="btn btn-primary" />
+                <Button text="Valider" class="mt-4" />
             </div>
         </form>
     </div>
