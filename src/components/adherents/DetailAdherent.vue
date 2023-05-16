@@ -23,7 +23,7 @@
                     </div>
                     <!-- Si utilisateur est un administrateur, peut supprimer & modifier adherent courant-->
                     <template v-if="this.$store.getters.getUser.roles == 'ADMIN'">
-                        <Button class="btn btn-danger" text="Supprimer" @onClick="removeAdherent(adherent.id)" />
+                        <Button bg="bg-[#c53620]" text="Supprimer" @onClick="removeAdherent(adherent.id)" />
                         <Modal text="Modifier" title="Modifier l'adhérent">
                             <EditAdherent :adherent="adherent" />
                         </Modal>
@@ -152,6 +152,7 @@ export default {
                 if (this.$store.getters.getUser.roles == 'ADMIN') {
                     if (window.confirm('Etes-vous sûr(e) de vouloir supprimer ' + this.fullname() + " ?")) {
                         await ipcRenderer.invoke('deleteAdherent', this.adherent.id);
+                        this.$store.commit('deleteAdherent', this.adherent.id)
                         this.$router.push({ name: 'Adherent' });
                     }
                 }

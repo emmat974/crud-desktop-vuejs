@@ -65,6 +65,9 @@ export default {
                 await ipcRenderer.invoke('loginEmploye', this.email, this.password).then((result) => {
                     if (result) {
                         this.$store.commit('setUser', result)
+                        ipcRenderer.invoke('fetchAdherents').then((adherents) => {
+                            this.$store.commit('setAdherents', adherents)
+                        })
                         this.$router.push({ name: 'Home' })
                     } else {
                         this.messageError = true

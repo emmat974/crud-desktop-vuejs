@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import * as VueRouter from 'vue-router'
 import routes from './route'
-import store from './store/search'
+import store from './store'
 
 
 const router = VueRouter.createRouter({

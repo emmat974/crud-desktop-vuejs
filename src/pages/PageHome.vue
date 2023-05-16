@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <!-- Résultat des 5 dernières adhérents, sous formes de tableau -->
-                <TableAdherent :adherents="adherents" />
+                <TableAdherent :adherents="this.$store.getters.getAdherents.slice(0, 5)" />
                 <!-- end tableau -->
             </div>
         </div>
@@ -52,7 +52,7 @@ import Modal from '@/components/ui/modal/UiModal.vue'
 import NewAdherent from '@/components/adherents/NewAdherent.vue';
 
 
-const { ipcRenderer } = require("electron")
+// const { ipcRenderer } = require("electron")
 
 export default {
     name: 'PageHome',
@@ -76,20 +76,8 @@ export default {
                     min: 0
                 }],
             },
-            // Tableau d'adhérent
-            adherents: []
         }
     },
-    created() {
-        // Récupère les adhérents
-        this.fetchAdherents()
-    },
-    methods: {
-        // Récupères les 5 dernières adhérents
-        async fetchAdherents() {
-            this.adherents = await ipcRenderer.invoke('fetchAdherentsWithLimit', 5)
-        },
-    }
 }
 
 </script>

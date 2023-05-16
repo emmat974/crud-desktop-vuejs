@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="flex items-center justify-center">
-                <Button text="Valider" class="mt-4" />
+                <Button text="Valider" bg="bg-[#F59100]" />
             </div>
         </form>
     </div>

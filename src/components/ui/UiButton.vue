@@ -1,7 +1,7 @@
 <template>
     <!-- Composant pour créer un bouton -->
     <button type="submit" @click="$emit('onClick')"
-        class="bg-[#F59100] text-white text-white font-medium font-light py-2 px-4 rounded-lg">
+        :class="bg + ' text-white text-white font-medium font-light py-2 px-4 rounded-lg'">
         <template v-if="icon">
             <i :class="icon"></i>
         </template>
@@ -24,6 +24,10 @@ export default {
         },
         onClick: {
             type: Function,
+            required: false
+        },
+        bg: {
+            type: String,
             required: false
         }
     }

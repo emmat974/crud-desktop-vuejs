@@ -39,8 +39,9 @@ export default {
         // Édit un adhérent, retourne une promesse
         async edit(adherent) {
             try {
-                const result = await ipcRenderer.invoke('updateAdherent', JSON.stringify(adherent))
-                this.$router.push({ name: 'DetailAdherent', params: { id: result.id } })
+                await ipcRenderer.invoke('updateAdherent', JSON.stringify(adherent))
+                this.$store.commit('updateAdherent', adherent)
+                this.$router.push({ name: 'DetailAdherent', params: { id: adherent.id } })
             } catch (error) {
                 console.error(error)
             }

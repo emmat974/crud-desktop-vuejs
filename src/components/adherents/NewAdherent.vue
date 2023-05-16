@@ -38,6 +38,7 @@ export default {
         async insertAdherent(adherent) {
             try {
                 const result = await ipcRenderer.invoke('insertAdherent', JSON.stringify(adherent))
+                this.$store.commit('addAdherent', { ...adherent, id: result.insertId })
                 this.$router.push({ name: 'DetailAdherent', params: { id: result.insertId } })
             } catch (error) {
                 console.error(error)

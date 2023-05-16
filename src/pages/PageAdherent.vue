@@ -44,7 +44,7 @@ import Table from '@/components/adherents/TableAdherent.vue';
 import Modal from '@/components/ui/modal/UiModal.vue'
 import NewAdherent from '@/components/adherents/NewAdherent.vue';
 
-const { ipcRenderer } = require("electron")
+// const { ipcRenderer } = require("electron")
 
 export default {
     name: 'PageAdherent',
@@ -91,8 +91,8 @@ export default {
             }
         },
         // Récupère les adhérents, retourne une promesse
-        async fetchAdherents() {
-            this.adherents = await ipcRenderer.invoke('fetchAdherents')
+        fetchAdherents() {
+            this.adherents = this.$store.getters.getAdherents
         },
     }
 }

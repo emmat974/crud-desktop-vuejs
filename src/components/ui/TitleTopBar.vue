@@ -9,11 +9,5 @@
 <script>
 export default {
     name: "TitleTopBar",
-    props: {
-        title: {
-            type: String,
-            required: true
-        }
-    }
 }
 </script>
