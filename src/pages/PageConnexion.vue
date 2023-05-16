@@ -1,10 +1,6 @@
 <template>
     <!-- Composant de page de connexion -->
-    <div>
-        <h1> A coder </h1>
-        <p> Connexion </p>
-        <Form />
-    </div>
+    <Form />
 </template>
 
 <script>
