@@ -3,6 +3,11 @@
     <div v-if="!loading">
         <div class="pt-6 px-4 w-full pt-6 px-4 w-full grid grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-4">
             <div>
+                <div class="mb-8">
+                    <!-- <img src="@/assets/carte.png" id="carte-img" class="w-full" /> -->
+                    <canvas id="canvas" class="w-full"></canvas>
+                </div>
+
                 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
                     <div class="flex items-center justify-between mb-4">
                         <div class="flex-shrink-0">
@@ -12,8 +17,8 @@
                     <span class="text-7xl sm:text-7xl leading-none font-bold text-gray-900">144,02 €</span>
                 </div>
             </div>
-            <div>
-                <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
+            <div class="bg-white shadow rounded-lg">
+                <div class=" p-4 sm:p-6 xl:p-8  2xl:col-span-2">
                     <div class="flex items-center justify-between mb-4">
                         <div class="flex-shrink-0">
                             <span class="text-2xl sm:text-2xl leading-none font-bold text-gray-900">
@@ -84,6 +89,7 @@
 import Modal from "@/components/ui/modal/UiModal.vue"
 import EditAdherent from "./EditAdherent.vue"
 import Button from "@/components/ui/UiButton.vue"
+import imageCarte from "@/assets/carte.png"
 
 const { ipcRenderer } = require("electron")
 
@@ -140,11 +146,45 @@ export default {
             this.loading = true
             try {
                 this.adherent = await ipcRenderer.invoke('getAdherent', id)
+                this.loading = false
+                console.log(this.adherent)
+                console.log(this.loading)
+                this.generateInfoCarte()
             } catch (error) {
                 console.error(error)
             }
-            this.loading = false
+        },
+        generateInfoCarte() {
+            setTimeout(() => {
+                const canvas = document.querySelector("#canvas");
 
+                if (canvas) {
+                    const ctx = canvas.getContext("2d");
+                    const image = new Image()
+                    // Gérer l'événement de chargement de l'image
+                    image.onload = () => {
+                        canvas.width = image.width;
+                        canvas.height = image.height;
+                        // Dessiner l'image sur le canvas
+                        ctx.drawImage(image, 0, 0);
+                        // Ajouter du texte sur l'image
+                        ctx.font = "15px Arial";
+                        ctx.fillStyle = "black";
+                        ctx.fillText(this.adherent.numero_carte, 30, 101);
+                        // Format la date
+                        const date = new Date(this.adherent.date_expiration);
+                        const month = String(date.getMonth() + 1).padStart(2, '0');
+                        const year = String(date.getFullYear());
+                        const formattedDate = `${month}/${year}`;
+                        ctx.fillText(formattedDate, 30, 168);
+                        // Affiche le code
+                        ctx.fillText(this.adherent.cryptogramme, 95, 168);
+                    };
+                    image.src = imageCarte
+                } else {
+                    console.error("L'élément canvas n'a pas été trouvé.");
+                }
+            }, 10)
         },
         // On supprime l'adhérent
         async removeAdherent() {
